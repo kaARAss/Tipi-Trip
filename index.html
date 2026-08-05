@@ -27,7 +27,9 @@
     <meta property="og:locale" content="ru_RU" />
     <meta property="og:title" content="Глэмпинг «Типи-Трип» — баня и купель под звёздами" />
     <meta property="og:description" content="Утеплённые типи с печью, русская баня и купель Фурако в 20 км от Санкт-Петербурга. Отдых на природе для двоих, компании и с питомцами." />
-    <meta property="og:image" content="./og.jpg" />
+    <link rel="canonical" href="https://tipi-trip.ru/" />
+    <meta property="og:url" content="https://tipi-trip.ru/" />
+    <meta property="og:image" content="https://tipi-trip.ru/og.jpg" />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
 
@@ -35,7 +37,7 @@
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Глэмпинг «Типи-Трип» — баня и купель под звёздами" />
     <meta name="twitter:description" content="Утеплённые типи с печью, русская баня и купель Фурако в 20 км от Санкт-Петербурга." />
-    <meta name="twitter:image" content="./og.jpg" />
+    <meta name="twitter:image" content="https://tipi-trip.ru/og.jpg" />
 
     <!-- Структурированные данные для Яндекс/Google -->
     <script type="application/ld+json">
@@ -44,7 +46,7 @@
       "@type": "LodgingBusiness",
       "name": "Глэмпинг «Типи-Трип»",
       "description": "Уютный глэмпинг в 20 км от Санкт-Петербурга: утеплённые типи с дровяной печью, русская баня, купель Фурако под звёздами, костровая зона. Pet-friendly, круглый год.",
-      "image": "./og.jpg",
+      "image": "https://tipi-trip.ru/og.jpg",
       "telephone": "+79669303886",
       "priceRange": "от 10 900 ₽",
       "petsAllowed": true,
@@ -66,5 +68,30 @@
 
   <body>
     <div id="root"></div>
+    <script id="tt-route-title">
+      (function () {
+        var T = {
+          "/": "Глэмпинг «Типи-Трип» — баня и купель Фурако в 20 км от Санкт-Петербурга",
+          "/services": "Услуги и цены — Глэмпинг «Типи-Трип»"
+        };
+        function set() {
+          var p = location.pathname.replace(/\/+$/, "") || "/";
+          var t = T[p];
+          if (t) document.title = t;
+        }
+        var wrap = function (k) {
+          var f = history[k];
+          history[k] = function () {
+            var r = f.apply(this, arguments);
+            setTimeout(set, 0);
+            return r;
+          };
+        };
+        wrap("pushState");
+        wrap("replaceState");
+        addEventListener("popstate", function () { setTimeout(set, 0); });
+        setTimeout(set, 0);
+      })();
+    </script>
   </body>
 </html>
