@@ -21,3 +21,20 @@
 @media (max-width:520px){.tt-promobar__title{font-size:18px}.tt-promobar__inner{padding:18px 16px 20px}.tt-promobar__btn{width:100%;text-align:center}}
 
 @media (prefers-reduced-motion:reduce){*,*:before,*:after{animation-duration:.001ms!important;animation-iteration-count:1!important;transition-duration:.001ms!important;scroll-behavior:auto!important}}
+
+/* === promo image + fluid wide layout === */
+.tt-promobar__media{position:relative;overflow:hidden;border-radius:12px;background:#0000002e;flex:0 0 auto}
+.tt-promobar__media img{display:block;width:100%;height:100%;object-fit:cover}
+.tt-promobar[data-count="2"] .tt-promobar__media,.tt-promobar[data-count="3"] .tt-promobar__media{width:100%;aspect-ratio:16 / 9}
+.tt-promobar[data-count="1"] .tt-promobar__media{width:clamp(120px,18vw,190px);aspect-ratio:4 / 3;border-radius:14px}
+.tt-services--flat{padding-left:clamp(16px,3.5vw,56px);padding-right:clamp(16px,3.5vw,56px)}
+.tt-services--flat .tt-services__head,.tt-services--flat .tt-cards{max-width:min(1560px,94vw)}
+.tt-services--flat .tt-cards{gap:clamp(18px,1.8vw,32px)}
+.tt-services--flat .tt-promobar[data-count="3"]{max-width:min(1560px,94vw)}
+.tt-services--flat .tt-promobar[data-count="2"]{max-width:min(1100px,90vw)}
+.tt-services--flat .tt-card__body{padding:clamp(18px,1.4vw,26px)}
+.tt-services--flat .tt-card__body h3{font-size:clamp(19px,1.35vw,25px)}
+.tt-services--flat .tt-card__body p{font-size:clamp(14px,1vw,16px)}
+@media (min-width:1700px){.tt-services--flat .tt-services__head,.tt-services--flat .tt-cards,.tt-services--flat .tt-promobar[data-count="3"]{max-width:1660px}}
+@media (max-width:980px){.tt-services--flat .tt-services__head,.tt-services--flat .tt-cards{max-width:none;width:100%}}
+@media (max-width:560px){.tt-promobar[data-count="1"] .tt-promobar__media{width:100%;aspect-ratio:16 / 9}}
