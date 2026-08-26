@@ -65,3 +65,67 @@
 .tt-promo:nth-child(3n+3){background:linear-gradient(135deg,#9dac85 0%,#bd8fa0 40%,#d68ba8 100%)!important;box-shadow:0 18px 44px rgba(214,139,168,.30)!important}
 .tt-promos .tt-promo__btn{color:#a85a78!important}
 .tt-promo-head__badge{background:linear-gradient(135deg,#9dac85 0%,#c78ea2 55%,#d68ba8 100%)!important;box-shadow:0 8px 22px rgba(214,139,168,.35)!important}
+
+/* ================= 2026 UX pass #2 ================= */
+
+/* --- (photo 2) Compact navbar so it no longer overlaps the hero title (title sits at top:80px) --- */
+.tt-nav{padding:10px 40px!important}
+.tt-nav.solid{padding:8px 40px!important}
+.tt-nav:not(.solid){padding:10px 40px!important}
+.tt-logo-img{height:44px!important;width:44px!important}
+.tt-brand-name{font-size:18px!important;padding-left:14px!important}
+.tt-links{gap:20px!important}
+.tt-links a.tt-navlink{font-size:11px!important;letter-spacing:.16em!important}
+@media(max-width:900px){.tt-nav,.tt-nav.solid,.tt-nav:not(.solid){padding:9px 18px!important}}
+
+/* --- (photo 1) Promo bar single item: readable horizontal layout instead of squished vertical text --- */
+.tt-promobar[data-count="1"]{max-width:980px!important}
+.tt-promobar .tt-promobar__list{display:block!important;grid-template-columns:none!important}
+.tt-promobar .tt-promobar__item{display:grid!important;grid-template-columns:clamp(140px,17vw,185px) minmax(0,1fr) auto!important;grid-template-rows:auto auto!important;column-gap:26px!important;row-gap:4px!important;align-items:center!important;padding:22px 26px!important;width:100%!important;box-sizing:border-box}
+.tt-promobar .tt-promobar__media{grid-column:1!important;grid-row:1 / span 2!important;width:100%!important;height:auto!important;aspect-ratio:4 / 3!important;max-height:150px;border-radius:14px;overflow:hidden;align-self:center!important}
+.tt-promobar .tt-promobar__media img{width:100%;height:100%;object-fit:cover;display:block}
+.tt-promobar .tt-promobar__badge{grid-column:2!important;grid-row:1!important;justify-self:start!important;align-self:end!important;margin:0!important}
+.tt-promobar .tt-promobar__body{grid-column:2!important;grid-row:2!important;align-self:start!important;min-width:0!important;display:flex;flex-direction:column;gap:6px}
+.tt-promobar .tt-promobar__title{white-space:normal!important;margin:0!important}
+.tt-promobar .tt-promobar__text{white-space:normal!important;max-width:none!important;margin:0!important}
+.tt-promobar .tt-promobar__btn{grid-column:3!important;grid-row:1 / span 2!important;align-self:center!important;white-space:nowrap!important;width:auto!important}
+@media(max-width:640px){
+ .tt-promobar .tt-promobar__item{grid-template-columns:1fr!important;grid-template-rows:auto!important;row-gap:12px!important}
+ .tt-promobar .tt-promobar__media{grid-column:1!important;grid-row:auto!important;width:100%!important;aspect-ratio:16 / 9!important;max-height:220px}
+ .tt-promobar .tt-promobar__badge{grid-column:1!important;grid-row:auto!important}
+ .tt-promobar .tt-promobar__body{grid-column:1!important;grid-row:auto!important}
+ .tt-promobar .tt-promobar__btn{grid-column:1!important;grid-row:auto!important;width:100%!important;justify-self:stretch!important;text-align:center}
+}
+
+/* --- (photo 3) Detail cards: remove left back button, keep only the close X, fit without scroll --- */
+.tt-detail__back{display:none!important}
+.tt-modal .tt-detail{max-height:93vh!important}
+.tt-detail__inner{gap:22px!important;padding:24px 26px!important}
+.tt-detail__info{gap:10px!important}
+.tt-detail__info h3{font-size:27px!important;padding-right:46px!important}
+.tt-detail__kicker{margin-bottom:0!important;padding-right:46px!important}
+.tt-detail__info p{font-size:14.5px!important;line-height:1.55!important}
+.tt-detail__foot{margin-top:6px!important}
+.tt-detail__close{top:12px!important;right:12px!important}
+/* reset top padding previously reserved for the (now removed) back button */
+.tt-info-modal{padding-top:36px!important}
+.tt-events-modal{padding-top:42px!important}
+.tt-promo-modal{padding-top:38px!important}
+.tt-info-modal__kicker,.tt-info-modal__title{padding-right:46px!important}
+.tt-events__head{padding-left:46px!important;padding-right:46px!important}
+.tt-promo-head{padding-left:46px!important;padding-right:46px!important}
+@media(max-width:640px){
+ .tt-detail__inner{padding-top:58px!important}
+ .tt-info-modal,.tt-events-modal,.tt-promo-modal{padding-top:58px!important}
+ .tt-detail__close{top:10px!important;right:10px!important}
+}
+
+/* --- (photo 4) Events modal: larger, easier-to-read text --- */
+.tt-events__title{font-size:clamp(24px,3vw,34px)!important}
+.tt-events__intro{font-size:16px!important;line-height:1.55!important;max-width:70ch!important}
+.tt-events__for-title{font-size:20px!important;margin-bottom:10px!important}
+.tt-events__list{gap:10px!important}
+.tt-events__list li{font-size:16px!important;line-height:1.45!important;padding-left:24px!important}
+.tt-events__list li:before{top:7px!important}
+.tt-events__outro{font-size:15px!important;line-height:1.5!important;max-width:78ch!important}
+.tt-events__badge{font-size:12px!important}
