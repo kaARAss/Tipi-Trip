@@ -129,3 +129,57 @@
 .tt-events__list li:before{top:7px!important}
 .tt-events__outro{font-size:15px!important;line-height:1.5!important;max-width:78ch!important}
 .tt-events__badge{font-size:12px!important}
+
+/* --- (events) Make the 6 event photos larger so they fill the empty bottom space --- */
+.tt-events__body{grid-template-columns:.72fr 1.28fr!important}
+.tt-events__gallery{grid-template-columns:repeat(3,1fr)!important;gap:12px!important}
+.tt-events__gallery .tt-detail__thumb{aspect-ratio:3 / 4!important}
+@media(max-width:900px){.tt-events__body{grid-template-columns:1fr!important}.tt-events__gallery .tt-detail__thumb{aspect-ratio:4 / 3!important}}
+@media(max-width:640px){.tt-events__gallery{grid-template-columns:repeat(2,1fr)!important}.tt-events__gallery .tt-detail__thumb{aspect-ratio:4 / 5!important}}
+
+/* ================= 2026 UX pass #3 ================= */
+
+/* --- (footer) Make the footer a bit shorter/less tall --- */
+.tt-foot{padding-top:30px!important;padding-bottom:18px!important}
+.tt-foot-in{gap:24px!important}
+.tt-foot-logo{height:50px!important;margin-bottom:10px!important}
+.tt-foot-desc{margin-bottom:12px!important;line-height:1.5!important}
+.tt-foot-col h4,.tt-foot h4{margin-bottom:10px!important}
+.tt-foot-contact{gap:8px!important}
+.tt-foot-contact a,.tt-foot-contact p{line-height:1.4!important}
+.tt-foot a,.tt-foot p{margin-bottom:7px!important}
+.tt-foot-map iframe{height:150px!important}
+
+/* --- (promo) Recolor the bright-pink promo banner image to a khaki->pink gradient (like the buttons, a bit more pink) --- */
+.tt-promobar .tt-promobar__media{background:linear-gradient(135deg,#9dac85 0%,#c58aa2 30%,#d98cb0 100%)!important}
+.tt-promobar .tt-promobar__media img{display:none!important}
+.tt-promobar .tt-promobar__media:after{content:"";position:absolute;inset:0;background:radial-gradient(circle at 78% -10%,rgba(255,255,255,.32),transparent 60%);pointer-events:none}
+
+/* ================= 2026 mobile fixes pass #4 ================= */
+
+/* (mobile) Make the hero "Перейти к услугам" CTA clickable — it was blocked by pointer-events:none until a scroll trigger that never fires on mobile */
+@media(max-width:900px){
+  .tt-home-cta{pointer-events:auto!important}
+  .tt-home-cta__link,.tt-home-cta__btn{pointer-events:auto!important;cursor:pointer!important}
+}
+
+/* (mobile) Rebuild the burger drawer so nav links are actually visible & functional */
+@media(max-width:900px){
+  .tt-burger{display:flex!important;z-index:120!important}
+  .tt-links{
+    position:fixed!important;top:0!important;right:0!important;bottom:0!important;left:auto!important;
+    width:min(80vw,330px)!important;
+    flex-direction:column!important;justify-content:flex-start!important;align-items:flex-start!important;
+    gap:18px!important;
+    background:#0a0d0bf7!important;-webkit-backdrop-filter:blur(14px)!important;backdrop-filter:blur(14px)!important;
+    padding:100px 34px 40px!important;
+    transform:translateX(100%)!important;transition:transform .38s ease!important;
+    z-index:105!important;overflow-y:auto!important;
+    box-shadow:-18px 0 50px rgba(0,0,0,.45)!important;
+  }
+  .tt-links.open{transform:translateX(0)!important}
+  .tt-links a.tt-navlink{font-size:17px!important;color:#fff!important;letter-spacing:.08em!important;padding:6px 0!important}
+  .tt-links a.tt-navlink.active{color:#c3cda6!important}
+  .tt-nav-sep{display:none!important}
+  .tt-links a.tt-nav-phone{font-size:18px!important;margin-top:6px!important}
+}
