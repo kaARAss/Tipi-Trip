@@ -38,3 +38,30 @@
 @media (min-width:1700px){.tt-services--flat .tt-services__head,.tt-services--flat .tt-cards,.tt-services--flat .tt-promobar[data-count="3"]{max-width:1660px}}
 @media (max-width:980px){.tt-services--flat .tt-services__head,.tt-services--flat .tt-cards{max-width:none;width:100%}}
 @media (max-width:560px){.tt-promobar[data-count="1"] .tt-promobar__media{width:100%;aspect-ratio:16 / 9}}
+
+/* === Custom fixes (2026): back button, line breaks, promo layout === */
+.tt-detail__back{position:absolute;top:14px;left:16px;z-index:5;display:inline-flex;align-items:center;gap:6px;min-height:38px;padding:0 16px;border-radius:999px;border:1px solid rgba(244,241,234,.22);background:rgba(0,0,0,.28);color:#f4f1ea;font-family:var(--sans,inherit);font-size:13px;font-weight:600;letter-spacing:.03em;cursor:pointer;transition:background .25s,transform .25s}
+.tt-detail__back:hover{background:rgba(0,0,0,.5);transform:translateX(-2px)}
+.tt-info-modal .tt-detail__back,.tt-events-modal .tt-detail__back,.tt-promo-modal .tt-detail__back{top:14px;left:16px}
+.tt-info-modal,.tt-events-modal,.tt-promo-modal{padding-top:64px}
+.tt-detail__info p,.tt-info-modal__text{white-space:pre-line}
+@media (max-width:640px){.tt-detail__back{top:10px;left:10px;min-height:34px;padding:0 12px;font-size:12px}}
+
+/* promo bar single-item clean layout (fixes squished/misaligned text) */
+.tt-promobar[data-count="1"] .tt-promobar__list,.tt-promobar[data-count="1"]{display:block}
+.tt-promobar[data-count="1"] .tt-promobar__item{display:flex;flex-direction:row;align-items:center;gap:24px;padding:20px 24px;width:100%;box-sizing:border-box}
+.tt-promobar[data-count="1"] .tt-promobar__media{flex:0 0 auto;width:clamp(150px,22vw,220px);aspect-ratio:4 / 3;border-radius:14px;overflow:hidden}
+.tt-promobar[data-count="1"] .tt-promobar__media img{width:100%;height:100%;object-fit:cover;display:block}
+.tt-promobar[data-count="1"] .tt-promobar__body{flex:1 1 auto;min-width:0;display:flex;flex-direction:column;gap:6px}
+.tt-promobar[data-count="1"] .tt-promobar__title{margin:0}
+.tt-promobar[data-count="1"] .tt-promobar__text{margin:0;max-width:70ch;overflow-wrap:anywhere}
+.tt-promobar[data-count="1"] .tt-promobar__btn{flex:0 0 auto;align-self:center;white-space:nowrap}
+@media (max-width:640px){.tt-promobar[data-count="1"] .tt-promobar__item{flex-direction:column;align-items:stretch;gap:14px;padding:16px}.tt-promobar[data-count="1"] .tt-promobar__media{width:100%;aspect-ratio:16 / 9}.tt-promobar[data-count="1"] .tt-promobar__btn{align-self:flex-start;width:100%;text-align:center}}
+
+/* === Promo banner recolor: khaki -> pink (match block buttons, a bit more pink) === */
+.tt-promos .tt-promo,
+.tt-promo:nth-child(3n+1),
+.tt-promo:nth-child(3n+2),
+.tt-promo:nth-child(3n+3){background:linear-gradient(135deg,#9dac85 0%,#bd8fa0 40%,#d68ba8 100%)!important;box-shadow:0 18px 44px rgba(214,139,168,.30)!important}
+.tt-promos .tt-promo__btn{color:#a85a78!important}
+.tt-promo-head__badge{background:linear-gradient(135deg,#9dac85 0%,#c78ea2 55%,#d68ba8 100%)!important;box-shadow:0 8px 22px rgba(214,139,168,.35)!important}
