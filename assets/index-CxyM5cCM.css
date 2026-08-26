@@ -183,3 +183,23 @@
   .tt-nav-sep{display:none!important}
   .tt-links a.tt-nav-phone{font-size:18px!important;margin-top:6px!important}
 }
+
+/* ================= 2026 mobile fixes pass #5 ================= */
+/* (mobile) Detail modal: full-screen, close X always reachable (sticky), nothing cut off at bottom */
+@media(max-width:640px){
+  .tt-modal{align-items:stretch!important;justify-content:center!important;padding:0!important;overflow:hidden!important}
+  .tt-modal .tt-detail{
+    width:100%!important;max-width:100%!important;
+    height:100vh!important;height:100dvh!important;max-height:100dvh!important;min-height:0!important;
+    border-radius:0!important;margin:0!important;border:0!important;
+    overflow-y:auto!important;-webkit-overflow-scrolling:touch!important;
+    animation:none!important;
+  }
+  .tt-detail__close{
+    position:sticky!important;top:10px!important;left:auto!important;
+    margin:10px 12px -46px auto!important;
+    z-index:20!important;width:44px!important;height:44px!important;font-size:22px!important;
+    background:#000000c4!important;border:1px solid rgba(255,255,255,.55)!important;
+  }
+  .tt-detail__inner{padding:56px 18px 56px!important;gap:16px!important}
+}
