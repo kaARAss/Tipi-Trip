@@ -203,3 +203,8 @@
   }
   .tt-detail__inner{padding:56px 18px 56px!important;gap:16px!important}
 }
+
+/* ================= pass #6: show real promo image (revert gradient placeholder) ================= */
+.tt-promobar .tt-promobar__media{background:#0000002e!important}
+.tt-promobar .tt-promobar__media img{display:block!important;width:100%!important;height:100%!important;object-fit:cover!important}
+.tt-promobar .tt-promobar__media:after{content:none!important;display:none!important;background:none!important}
