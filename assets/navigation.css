@@ -1,0 +1,26 @@
+/* A separate drawer avoids fixed-position clipping inside the blurred header. */
+.tt-site-nav__right{display:flex;align-items:center;gap:24px;min-width:0}
+.tt-menu-toggle{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;flex:0 0 44px;width:44px;height:44px;padding:8px;border:1px solid #ffffff38;border-radius:10px;background:#ffffff08;color:#fff;cursor:pointer}
+.tt-menu-toggle span{display:block;width:22px;height:2px;background:currentColor;border-radius:2px}
+.tt-menu-toggle:hover{background:#ffffff14;border-color:#b5c39b}
+.tt-menu-toggle:focus-visible,.tt-menu-close:focus-visible,.tt-menu-drawer a:focus-visible{outline:3px solid #d1dcba;outline-offset:5px}
+.tt-menu-backdrop{position:fixed;inset:0;z-index:1000;width:100%;height:100%;border:0;padding:0;background:#0009;backdrop-filter:blur(4px);cursor:pointer}
+.tt-menu-drawer{position:fixed;inset:0 0 0 auto;z-index:1001;width:min(400px,calc(100vw - 24px));height:100dvh;overflow-y:auto;overscroll-behavior:contain;padding:28px 32px 36px;box-sizing:border-box;background:#10150f;color:#f8f8f0;border-left:1px solid #a3b38c44;box-shadow:-16px 0 64px #0006;font-family:var(--sans,Arial,sans-serif)}
+.tt-menu-drawer__head{display:flex;align-items:center;justify-content:space-between;gap:16px;margin-bottom:32px}
+.tt-menu-drawer__head h2{margin:0;font-family:var(--tt-serif,Georgia,serif);font-size:32px;font-weight:400;line-height:1.2}
+.tt-menu-close{width:44px;height:44px;flex-shrink:0;padding:0;border:1px solid #ffffff38;border-radius:10px;background:transparent;color:#fff;font:32px/1 Arial,sans-serif;cursor:pointer}
+.tt-menu-close:hover{background:#ffffff14}
+.tt-menu-drawer__links{display:flex;flex-direction:column;gap:8px}
+.tt-menu-drawer__links .tt-navlink{display:flex;align-items:center;min-height:52px;padding:10px 0;color:#dedfd7;font-size:20px;line-height:1.4;text-decoration:none;border-bottom:1px solid #ffffff14}
+.tt-menu-drawer__links .tt-navlink:hover,.tt-menu-drawer__links .tt-navlink.active{color:#d1dcba}
+.tt-menu-drawer__footer{display:flex;flex-direction:column;align-items:flex-start;gap:24px;margin-top:40px}
+.tt-menu-drawer__footer .tt-nav-phone{display:flex;align-items:center;gap:10px;min-height:44px;color:#f5f5ef;font-size:17px;text-decoration:none}
+.tt-menu-drawer__footer .tt-nav-phone svg{width:18px;height:18px;color:#b5c39b}
+.tt-menu-drawer__socials{display:flex;gap:12px}
+.tt-menu-drawer__socials a{display:flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:50%;border:1px solid #ffffff45;color:#fff;font-size:13px;font-weight:600;text-decoration:none}
+.tt-menu-drawer__socials svg{width:22px;height:22px}
+.tt-menu-drawer__socials a:hover{border-color:#b5c39b;background:#ffffff0a}
+.tt-menu-drawer__footer .cta{display:flex;align-items:center;justify-content:center;min-height:48px;width:100%;padding:12px 20px;box-sizing:border-box;border-radius:28px;background:#9dac85;color:#10150f;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;text-decoration:none}
+@media(min-width:1101px){.tt-site-nav .tt-desktop-links{position:static!important;transform:none!important;flex-direction:row!important}.tt-site-nav .tt-desktop-links a.tt-navlink{white-space:nowrap}}
+@media(max-width:1100px){.tt-site-nav .tt-desktop-links{display:none!important}.tt-site-nav__right{gap:0}}
+@media(max-width:480px){.tt-menu-drawer{padding:20px 24px 28px}.tt-menu-drawer__head{margin-bottom:24px}}
