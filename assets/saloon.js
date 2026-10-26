@@ -1,7 +1,7 @@
 /* Saloon: owner-provided copy and five unique interior photographs. */
 export const saloonService = {
   title: 'Saloon',
-  desc: 'Кухня, тёплый душ и туалет. Всё включено в стоимость проживания.',
+  desc: 'Кухня, душ и туалет в отдельном домике на территории.',
   price: 'Входит в стоимость проживания',
   image: './img/saloon-kitchen-wide.svg',
 };
