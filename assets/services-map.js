@@ -21,7 +21,6 @@ export function ServicesMap({ react: React, jsx: { jsx, jsxs }, cards, onOpen })
     className: 'tt-territory', 'aria-labelledby': 'tt-territory-title',
     children: [
       jsxs('div', { className: 'tt-territory__head', children: [
-        jsx('span', { className: 'tt-services__kicker', children: 'Всё рядом' }),
         jsx('h2', { id: 'tt-territory-title', className: 'tt-territory__title', children: 'Карта территории' }),
         jsx('p', { id: 'tt-territory-hint', className: 'tt-territory__hint', children: 'Нажмите на типи, баню, купель или Saloon, чтобы узнать подробнее.' }),
       ] }),
