@@ -29,7 +29,7 @@ async def check(url):
                 await modal.wait_for(state='visible')
                 assert await modal.locator('h3').inner_text() == 'Saloon'
                 assert 'Всё это уже включено в стоимость проживания!' in await modal.inner_text()
-                assert await modal.locator('img').count() == 5
+                assert await modal.locator('img').count() == 6
                 for image in await modal.locator('img').all():
                     await image.evaluate('(img)=>img.decode()')
                 await page.screenshot(path=f'/data/saloon-{width}-modal.png')
@@ -76,7 +76,7 @@ async def check(url):
                 assert await migrated.locator('img').get_attribute('src') == './img/saloon-exterior-cover.svg'
                 assert await page.locator('.tt-card h3').first.inner_text() == 'Сохранённый типи'
                 assert not errors, errors
-                print(f'PASS {width}px: Saloon card, five interior photos, gallery zoom, map, old-content migration')
+                print(f'PASS {width}px: Saloon card, six interior photos, gallery zoom, map, old-content migration')
                 await context.close()
         finally:
             await browser.close()
