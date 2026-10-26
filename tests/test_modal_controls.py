@@ -19,7 +19,7 @@ async def check(url):
                 await page.goto(url + '/#/services', wait_until='domcontentloaded')
                 await page.locator('.tt-cards').wait_for(state='visible')
                 await page.add_style_tag(content='.tt-modal,.tt-modal *{animation:none!important;transition:none!important}')
-                for index in range(6):
+                for index in range(7):
                     await page.locator('.tt-card__more').nth(index).click()
                     modal = page.locator('.tt-modal')
                     await modal.wait_for(state='visible')
@@ -50,7 +50,7 @@ async def check(url):
                     await button.click()
                     await modal.wait_for(state='detached')
                     assert await page.evaluate('document.body.style.overflow') != 'hidden'
-                print(f'PASS {width}px: all six cards, photo separation, pinned close row, click to close')
+                print(f'PASS {width}px: all seven cards, photo separation, pinned close row, click to close')
                 await context.close()
         finally:
             await browser.close()

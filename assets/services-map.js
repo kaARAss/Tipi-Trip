@@ -7,6 +7,8 @@ export const serviceMapAreas = [
     points: '434,252 448,190 491,126 526,119 551,156 590,193 602,244 574,266 493,268' },
   { id: 'furako', label: 'Купель Фурако', match: /купель|фурако/i,
     points: '484,274 505,259 553,259 576,278 580,310 606,316 607,375 493,375 492,319 481,300' },
+  { id: 'saloon', label: 'Saloon', match: /^saloon$/i,
+    points: '277,339 309,306 312,277 469,277 470,304 490,312 482,400 395,466 356,460 298,424' },
 ];
 
 export function ServicesMap({ react: React, jsx: { jsx, jsxs }, cards, onOpen }) {
@@ -21,11 +23,11 @@ export function ServicesMap({ react: React, jsx: { jsx, jsxs }, cards, onOpen })
       jsxs('div', { className: 'tt-territory__head', children: [
         jsx('span', { className: 'tt-services__kicker', children: 'Всё рядом' }),
         jsx('h2', { id: 'tt-territory-title', className: 'tt-territory__title', children: 'Карта территории' }),
-        jsx('p', { id: 'tt-territory-hint', className: 'tt-territory__hint', children: 'Нажмите на типи, баню или купель, чтобы узнать подробнее.' }),
+        jsx('p', { id: 'tt-territory-hint', className: 'tt-territory__hint', children: 'Нажмите на типи, баню, купель или Saloon, чтобы узнать подробнее.' }),
       ] }),
       jsxs('div', { className: 'tt-territory__canvas', children: [
         jsx('img', { className: 'tt-territory__image', src: './img/territory-map.svg',
-          alt: 'План территории Типи-Трип: спальный типи, баня, купель Фурако, кухня, костровая и мангальная зоны, гамаки, тир и парковка.',
+          alt: 'План территории Типи-Трип: спальный типи, баня, купель Фурако, Saloon (кухня, душ, туалет), костровая и мангальная зоны, гамаки, тир и парковка.',
           width: 1920, height: 1080, loading: 'lazy', decoding: 'async' }),
         jsx('svg', { className: 'tt-territory__areas', viewBox: '0 0 1280 720',
           'aria-label': 'Объекты на карте территории', 'aria-describedby': 'tt-territory-hint',

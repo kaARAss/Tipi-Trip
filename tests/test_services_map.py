@@ -29,13 +29,14 @@ async def check(base_url):
                 territory = page.locator('.tt-territory')
                 await territory.scroll_into_view_if_needed()
                 await territory.locator('img').evaluate('(img) => img.decode()')
-                assert await page.locator('[data-map-object]').count() == 3
+                assert await page.locator('[data-map-object]').count() == 4
                 assert not await page.evaluate('document.documentElement.scrollWidth > innerWidth')
                 # Each click is inside the actual illustration, not a fallback button.
                 canvas = await page.locator('.tt-territory__canvas').bounding_box()
                 for key, x, y, title in [('tipi', 620, 145, 'ПРОЖИВАНИЕ'),
                                        ('banya', 520, 215, 'БАНЯ'),
-                                       ('furako', 532, 287, 'ФУРАКО')]:
+                                       ('furako', 532, 287, 'ФУРАКО'),
+                                       ('saloon', 385, 380, 'SALOON')]:
                     await page.mouse.click(canvas['x'] + canvas['width'] * x / 1280,
                                            canvas['y'] + canvas['height'] * y / 720)
                     modal = page.locator('.tt-modal')
