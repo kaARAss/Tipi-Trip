@@ -1,9 +1,9 @@
-/* Saloon uses existing project photos. No unconfirmed price or rental terms. */
+/* Saloon: owner-provided copy and five unique interior photographs. */
 export const saloonService = {
   title: 'Saloon',
-  desc: 'Кухня, душ и туалет в отдельном здании на территории.',
-  price: 'Уточняйте при бронировании',
-  image: './img/img2.webp',
+  desc: 'Кухня, тёплый душ и туалет. Всё включено в стоимость проживания.',
+  price: 'Входит в стоимость проживания',
+  image: './img/saloon-kitchen-wide.svg',
 };
-export const saloonGallery = ['./img/img2.webp', './img/img12.webp'];
-export const saloonDetails = 'Saloon — отдельное здание на территории «Типи-Трип».\n\nЗдесь расположены кухня, душ и туалет.\n\nУсловия пользования уточняйте при бронировании.';
+export const saloonGallery = ["./img/saloon-kitchen-wide.svg", "./img/saloon-kitchen.svg", "./img/saloon-washroom-wide.svg", "./img/saloon-shower.svg", "./img/saloon-washroom.svg"];
+export const saloonDetails = "🏡 Saloon — это уютный домик на территории Типи-Трип, где всё продумано до мелочей.\n\n🚿 Здесь вас ждут тёплый душ, туалет, кухня со всем необходимым — холодильник, плита, чайник, микроволновка, термопот, термос и посуда. А ещё — откидной стол на четверых, чтобы удобно было собраться всей компанией.\n\n☕ Мы позаботились о каждой детали: на каждого гостя — по три полотенца, гель, шампунь и чай.\n\nВсё это уже включено в стоимость проживания!\n\n🤍 Приезжайте — и чувствуйте себя как дома.";
