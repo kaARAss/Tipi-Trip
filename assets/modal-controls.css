@@ -1,0 +1,26 @@
+/* Close controls occupy real layout space, never a corner of the gallery. */
+.tt-modal .tt-detail__close{
+  position:static!important;inset:auto!important;
+  display:flex!important;align-items:center;justify-content:center;
+  width:44px!important;height:44px!important;min-width:44px;min-height:44px;
+  flex:0 0 44px;align-self:flex-end;
+  margin:12px 14px 12px auto!important;padding:0;
+  background:#202719!important;color:#fff!important;
+  border:1px solid #c3ccab!important;border-radius:50%;
+  font-family:Arial,sans-serif!important;font-weight:400!important;
+  font-size:26px!important;line-height:1!important;
+}
+.tt-modal .tt-detail__close:hover{background:#35402b!important;transform:none!important}
+.tt-modal .tt-detail__close:focus-visible{outline:3px solid #f1dbb1;outline-offset:3px}
+/* The detail card has a dedicated fixed-height control row and a scrollable body.
+   On mobile the existing full-screen card is retained. */
+.tt-modal .tt-detail{display:flex;flex-direction:column;overflow:hidden!important}
+.tt-modal .tt-detail__inner{min-height:0;overflow-y:auto;overscroll-behavior:contain;
+  -webkit-overflow-scrolling:touch;padding-top:0!important}
+/* Other card types already scroll as one block; keep their close button in flow too. */
+.tt-modal :is(.tt-info-modal,.tt-events-modal,.tt-promo-modal)>.tt-detail__close{
+  margin:0 0 16px auto!important;
+}
+.tt-modal .tt-info-modal{padding-top:18px!important}
+.tt-modal .tt-events-modal{padding-top:18px!important}
+.tt-modal .tt-promo-modal{padding-top:18px!important}
