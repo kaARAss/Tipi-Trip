@@ -1,0 +1,18 @@
+/* Kept separate from the compiled site styles for safe, isolated maintenance. */
+.tt-territory{max-width:1180px;margin:64px auto 0;color:var(--tt-text,#fff)}
+.tt-territory__head{text-align:center;margin-bottom:24px}
+.tt-territory__title{font-family:var(--tt-serif,Georgia,serif);font-size:clamp(30px,4vw,48px);line-height:1.12;color:#fff;margin:12px 0 14px}
+.tt-territory__hint{font-family:var(--tt-sans,sans-serif);font-size:16px;line-height:1.5;color:#d6d5cd;margin:0 auto;max-width:580px}
+.tt-territory__canvas{position:relative;isolation:isolate;overflow:hidden;border:1px solid #e0a15c55;border-radius:22px;background:#1b241a}
+.tt-territory__image{display:block;width:100%;height:auto;aspect-ratio:16/9}
+.tt-territory__areas{position:absolute;inset:0;display:block;width:100%;height:100%;overflow:visible}
+.tt-territory__target{cursor:pointer;outline:none}
+.tt-territory__target polygon{fill:transparent;stroke:transparent;stroke-width:3;stroke-linejoin:round;transition:fill .18s ease,stroke .18s ease;pointer-events:all}
+.tt-territory__target.is-active polygon,.tt-territory__target:hover polygon{fill:#f2c77733;stroke:#ffe2a4}
+.tt-territory__target:focus-visible polygon{fill:#f2c77744;stroke:#fff;stroke-width:4;stroke-dasharray:7 4}
+.tt-territory__legend{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:20px}
+.tt-territory__link{min-height:46px;padding:10px 20px;border:1px solid #e0a15c66;border-radius:12px;background:#1d241df2;color:#ffe0af;font-family:var(--tt-sans,sans-serif);font-size:15px;line-height:1.4;cursor:pointer;transition:background .18s,border-color .18s}
+.tt-territory__link:hover,.tt-territory__link.is-active{background:#433623;border-color:#f3cd8a}
+.tt-territory__link:focus-visible{outline:3px solid #ffe2a4;outline-offset:4px}
+@media(max-width:600px){.tt-territory{margin-top:48px}.tt-territory__head{margin-bottom:20px}.tt-territory__canvas{border-radius:12px}.tt-territory__legend{gap:8px;margin-top:16px}.tt-territory__link{padding:10px 14px;font-size:14px;flex:1 1 auto}.tt-territory__hint{font-size:15px}}
+@media(prefers-reduced-motion:reduce){.tt-territory__target polygon,.tt-territory__link{transition:none}}
