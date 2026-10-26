@@ -66,14 +66,14 @@ async def check(url):
                 # Also update only the exact stale Saloon defaults in an old seven-card save.
                 await page.evaluate("""() => {
                   const old=JSON.parse(localStorage.getItem('tt_site_content_v5'));
-                  old.services.cards.push({title:'Saloon',desc:'Кухня, душ и туалет в отдельном здании на территории.',price:'Уточняйте при бронировании',image:'./img/img2.webp'});
+                  old.services.cards.push({title:'Saloon',desc:'Кухня, душ и туалет в отдельном здании на территории.',price:'Уточняйте при бронировании',image:'./img/saloon-kitchen-wide.svg'});
                   localStorage.setItem('tt_site_content_v5',JSON.stringify(old));
                 }""")
                 await page.reload(wait_until='domcontentloaded')
                 await page.get_by_role('heading', name='Saloon', exact=True).wait_for(state='visible')
                 migrated = page.locator('.tt-card').filter(has=page.get_by_role('heading', name='Saloon', exact=True))
                 assert await migrated.locator('.tt-card__price').inner_text() == 'Входит в стоимость проживания'
-                assert await migrated.locator('img').get_attribute('src') == './img/saloon-kitchen-wide.svg'
+                assert await migrated.locator('img').get_attribute('src') == './img/saloon-exterior-cover.svg'
                 assert await page.locator('.tt-card h3').first.inner_text() == 'Сохранённый типи'
                 assert not errors, errors
                 print(f'PASS {width}px: Saloon card, five interior photos, gallery zoom, map, old-content migration')
