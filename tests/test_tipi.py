@@ -18,7 +18,7 @@ async def check(url):
     assert await card.locator('img').get_attribute('src')=='./img/img4.webp'
     await card.get_by_role('button',name='Подробнее',exact=True).click()
     modal=page.locator('.tt-modal');await modal.wait_for(state='visible')
-    images=modal.locator('img');assert await images.count()==6
+    images=modal.locator('img');assert await images.count()==9
     for i,img in enumerate(await images.all()):
      await img.evaluate('(img)=>img.decode()')
      assert await img.evaluate('(img)=>img.naturalWidth>0')
@@ -31,7 +31,7 @@ async def check(url):
     await modal.locator('.tt-detail__close').click()
     assert not await page.evaluate('document.documentElement.scrollWidth>innerWidth')
     assert not errors,errors
-    print(f'PASS {width}: unchanged preview, six loaded photos, zoom, close, no overflow/errors')
+    print(f'PASS {width}: unchanged preview, nine loaded photos, zoom, close, no overflow/errors')
     await page.close()
   finally:await browser.close()
 
