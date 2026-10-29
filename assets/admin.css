@@ -6,3 +6,8 @@
 
 dialog label{grid-template-columns:1fr auto}dialog label input[type=range]{grid-column:1/-1}
 @media(max-width:680px){.topbar{backdrop-filter:none;-webkit-backdrop-filter:none}.top-actions #logout{padding:10px;font-size:14px}}
+
+/* Explicit frame dimensions prevent percentage-height/intrinsic-image drift. */
+.crop-stage{flex:none;max-height:none!important;max-width:100%;margin:16px auto;box-sizing:content-box;border:0;outline:1px solid #6d785e}.crop-stage canvas{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}.crop-stage:after{inset:0;border:0;background:linear-gradient(to right,transparent calc(33.333% - .5px),#ffffff35 33.333%,transparent calc(33.333% + .5px),transparent calc(66.666% - .5px),#ffffff35 66.666%,transparent calc(66.666% + .5px)),linear-gradient(to bottom,transparent calc(33.333% - .5px),#ffffff35 33.333%,transparent calc(33.333% + .5px),transparent calc(66.666% - .5px),#ffffff35 66.666%,transparent calc(66.666% + .5px))}.crop-frame-note{margin-bottom:8px}.crop-pan-note{margin-bottom:16px}.crop-reference{position:fixed!important;left:-20000px!important;top:0!important;visibility:hidden;pointer-events:none;border:0;max-width:none!important}.media-view>img,.media-view>video{position:absolute;inset:0;width:100%;height:100%}
+
+.media-view>canvas{position:absolute;inset:0;display:block;width:100%;height:100%;pointer-events:none}

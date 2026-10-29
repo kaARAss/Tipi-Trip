@@ -1,3 +1,4 @@
+import {applyCover} from './media-framing.js?v=2';
 /* Non-destructive bindings for public media framing and remaining interface labels. */
 export function start({preview=false}={}){
  const originals=new WeakMap(),lastApplied=new WeakMap();let scheduled=false,editMode=false;
@@ -24,7 +25,9 @@ export function start({preview=false}={}){
    if(path==='media.logo'||(el.matches('.tt-nav__logo img,.tt-site-nav img')&&src.includes('logo'))){path='media.logo';if(el.getAttribute('src')!==data.media.logo)el.src=data.media.logo;}
    if(!path)return;el.dataset.cmsPath=path;
    const crop=cropFor(path);el.style.objectPosition=`${crop.x}% ${crop.y}%`;
-   if(!el.classList.contains('tt-lightbox__img')){if(data.crops?.[path]){el.style.transform=`scale(${crop.zoom})`;el.style.transformOrigin=`${crop.x}% ${crop.y}%`;}else{el.style.removeProperty('transform');el.style.removeProperty('transform-origin');}el.style.objectFit='cover';}if(path==='media.logo'&&el.parentElement){el.parentElement.style.overflow='hidden';el.parentElement.style.borderRadius='50%';}
+   if(!el.classList.contains('tt-lightbox__img')){if(data.crops?.[path]){el.style.transform=`scale(${crop.zoom})`;el.style.transformOrigin=`${crop.x}% ${crop.y}%`;}else{el.style.removeProperty('transform');el.style.removeProperty('transform-origin');}el.style.objectFit='cover';}if(el.matches('.tt-videobg__v')){Object.assign(el.style,{position:'absolute',inset:'0',width:'100%',height:'100%',minWidth:'0',minHeight:'0',maxWidth:'none'});applyCover(el,crop);}
+   if(el.closest('.tt-card__img,.tt-detail__thumb')){el.style.position='absolute';el.style.inset='0';el.style.width='100%';el.style.height='100%';}
+   if(path==='media.logo'&&el.parentElement){el.parentElement.style.overflow='hidden';el.parentElement.style.borderRadius='50%';}
    if(el.tagName==='VIDEO'&&!el.classList.contains('tt-videobg__v')){el.style.width='100%';el.style.height='100%';}
   });
   const map=document.querySelector('.tt-territory__areas');if(map){const c=cropFor('media.territoryMap');map.style.transform=`scale(${c.zoom})`;map.style.transformOrigin=`${c.x}% ${c.y}%`;}
@@ -38,6 +41,14 @@ export function start({preview=false}={}){
    if(e.data?.type==='tipi:update'){window.TipiCMSApply(e.data.data);schedule();}
    if(e.data?.type==='tipi:editMode'){editMode=!!e.data.enabled;document.documentElement.style.cursor=editMode?'crosshair':'';}
    if(e.data?.type==='tipi:openCard'){document.querySelectorAll('.tt-card')[e.data.index]?.querySelector('.tt-card__more')?.click();}
+   if(e.data?.type==='tipi:measureFrame'){
+    const path=e.data.path;if(typeof path!=='string'||path.length>300)return;apply();
+    let target=[...document.querySelectorAll('[data-cms-path]')].find(el=>el.dataset.cmsPath===path);
+    if(!target){const match=path.match(/^galleries\.(\d+)\./);const index=match?Number(match[1]):path.startsWith('site.services.events.gallery.')?5:null;if(index!==null&&!document.querySelector('.tt-modal'))document.querySelector('[data-cms-path="site.services.cards.'+index+'.image"]')?.closest('.tt-card')?.querySelector('.tt-card__more')?.click();return;}
+    const frame=target.closest('.tt-card__img,.tt-detail__thumb')||target;const rect=frame.getBoundingClientRect();const width=frame===target?target.clientWidth:rect.width,height=frame===target?target.clientHeight:rect.height;
+    if(width>0&&height>0)parent.postMessage({type:'tipi:frameSize',request:e.data.request,path,frame:{width,height}},location.origin);
+   }
+
   });
   document.addEventListener('click',e=>{if(!editMode)return;const target=e.target.closest('img,video,[data-cms-path]')||e.target;
    const path=target.dataset?.cmsPath;
