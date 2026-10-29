@@ -17,9 +17,9 @@ async def check(url):
                 errors = []
                 page.on('pageerror', lambda error: errors.append(str(error)))
                 await page.goto(url + '/#/services', wait_until='domcontentloaded')
-                await page.locator('.tt-card').nth(6).wait_for(state='visible')
+                await page.locator('.tt-card').nth(5).wait_for(state='visible')
                 await page.add_style_tag(content='.tt-modal,.tt-modal *{animation:none!important;transition:none!important}')
-                assert await page.locator('.tt-card').count() == 7
+                assert await page.locator('.tt-card').count() == 6
                 card = page.locator('.tt-card').filter(has=page.get_by_role('heading', name='Saloon', exact=True))
                 await card.scroll_into_view_if_needed()
                 await card.locator('img').evaluate('(img)=>img.decode()')
@@ -48,35 +48,16 @@ async def check(url):
                 assert await modal.locator('h3').inner_text() == 'Saloon'
                 assert 'Всё это уже включено в стоимость проживания!' in await modal.inner_text()
                 await modal.locator('.tt-detail__close').click()
-                # A browser with six previously saved cards gets the new default, without losing edits.
-                await page.evaluate('''() => {
-                  const cards=Array.from(document.querySelectorAll('.tt-card')).slice(0,6).map((el,index)=>({
-                    title:el.querySelector('h3').textContent,desc:el.querySelector('p').textContent,
-                    price:el.querySelector('.tt-card__price').textContent,image:el.querySelector('img').getAttribute('src'),
-                    ...(index===3?{infoOnly:true}:{}),...(index===5?{events:true}:{})
-                  }));
-                  cards[0].title='Сохранённый типи';
-                  localStorage.setItem('tt_site_content_v5',JSON.stringify({services:{cards}}));
-                }''')
+                # A legacy browser draft cannot override globally published content.
+                originalTitle=await page.locator('.tt-card h3').first.inner_text()
+                await page.evaluate("localStorage.setItem('tt_site_content_v5',JSON.stringify({services:{cards:[{title:'Старый локальный текст'}]}}))")
                 await page.reload(wait_until='domcontentloaded')
                 await page.get_by_role('heading', name='Saloon', exact=True).wait_for(state='visible')
-                assert await page.locator('.tt-card').count() == 7
-                assert await page.locator('.tt-card h3').first.inner_text() == 'Сохранённый типи'
+                assert await page.locator('.tt-card').count() == 6
+                assert await page.locator('.tt-card h3').first.inner_text() == originalTitle
                 assert not await page.evaluate('document.documentElement.scrollWidth > innerWidth')
-                # Also update only the exact stale Saloon defaults in an old seven-card save.
-                await page.evaluate("""() => {
-                  const old=JSON.parse(localStorage.getItem('tt_site_content_v5'));
-                  old.services.cards.push({title:'Saloon',desc:'Кухня, душ и туалет в отдельном здании на территории.',price:'Уточняйте при бронировании',image:'./img/saloon-kitchen-wide.svg'});
-                  localStorage.setItem('tt_site_content_v5',JSON.stringify(old));
-                }""")
-                await page.reload(wait_until='domcontentloaded')
-                await page.get_by_role('heading', name='Saloon', exact=True).wait_for(state='visible')
-                migrated = page.locator('.tt-card').filter(has=page.get_by_role('heading', name='Saloon', exact=True))
-                assert await migrated.locator('.tt-card__price').inner_text() == 'Входит в стоимость проживания'
-                assert await migrated.locator('img').get_attribute('src') == './img/saloon-exterior-cover.svg'
-                assert await page.locator('.tt-card h3').first.inner_text() == 'Сохранённый типи'
                 assert not errors, errors
-                print(f'PASS {width}px: Saloon card, six interior photos, gallery zoom, map, old-content migration')
+                print(f'PASS {width}px: Saloon card, six interior photos, gallery zoom, map, published manifest takes priority')
                 await context.close()
         finally:
             await browser.close()

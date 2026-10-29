@@ -56,15 +56,16 @@ async def check(url):
                 assert await modal.locator('h3').inner_text()=='Купель Фурако'
                 assert await modal.locator('.tt-detail__gallery img').count()==6
                 await modal.locator('.tt-detail__close').click()
-                # Only an old default cover changes; unrelated saved descriptions remain intact.
+                # Published manifest, not stale localStorage, is the public source of truth.
+                publishedDescription=await card.locator('p').inner_text()
                 await page.evaluate("""() => localStorage.setItem('tt_site_content_v5',JSON.stringify({services:{cards:Array.from(document.querySelectorAll('.tt-card')).map((el,index)=>({title:el.querySelector('h3').textContent,desc:index===2?'Сохранённое описание купели':el.querySelector('p').textContent,price:el.querySelector('.tt-card__price').textContent,image:index===2?'./img/kupel-preview.webp':el.querySelector('img').getAttribute('src'),...(index===3?{infoOnly:true}:{}),...(index===5?{events:true}:{})}))}}))""")
                 await page.reload(wait_until='domcontentloaded')
                 await card.wait_for(state='visible')
                 assert await card.locator('img').get_attribute('src')==PHOTOS[0]
-                assert await card.locator('p').inner_text()=='Сохранённое описание купели'
+                assert await card.locator('p').inner_text()==publishedDescription
                 assert not await page.evaluate('document.documentElement.scrollWidth>innerWidth')
                 assert not errors,errors
-                print(f'PASS {width}px: six photos, cover, full-size slideshow, map link, saved-cover migration')
+                print(f'PASS {width}px: six photos, cover, full-size slideshow, map link, published manifest overrides stale localStorage')
                 await context.close()
         finally:
             await browser.close()

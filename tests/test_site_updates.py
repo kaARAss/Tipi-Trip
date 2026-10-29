@@ -36,11 +36,11 @@ async def check(url):
     assert await page.evaluate('document.body.style.overflow')!='hidden'
     await page.locator('.tt-review-btn').scroll_into_view_if_needed();await page.screenshot(path=f'/data/updates-{width}-reviews.png')
     await page.evaluate('window.scrollTo(0,0)');await page.wait_for_timeout(150);await page.screenshot(path=f'/data/updates-{width}-services.png')
-    # Old saved copy is migrated; unrelated text remains untouched.
+    # Published content must ignore obsolete browser-only drafts.
     await page.evaluate('''()=>localStorage.setItem('tt_site_content_v5',JSON.stringify({home:{slides:[{title:'Мой заголовок',description:'Мой текст'},{title:'Уютные утеплённые типи',description:'С дровяной печью и настоящим SPA'},{title:'Твой загородный SPA-оазис',description:'Русская баня и купель Фурако под звёздами'},{title:'Мы уже ждём именно вас',description:'Забронируйте свой уголок тишины'}]}}))''')
     await page.reload(wait_until='domcontentloaded')
     await page.locator('.tt-menu-toggle').click();await page.locator('.tt-menu-drawer').get_by_role('link',name='Главная',exact=True).click();await page.wait_for_url('**/#/')
-    for title in ['Мой заголовок','Уютные всесезонные типи','Загородный SPA-оазис','Ваш отдых начинается с бронирования!']:
+    for title in [s['title'] for s in json.loads((Path(__file__).resolve().parents[1]/'site-content.json').read_text())['site']['home']['slides']]:
      await page.get_by_role('heading',name=title,exact=True).wait_for(state='attached')
     assert 'Место, где утром пахнет лесом' in await page.locator('body').text_content()
     await page.evaluate('window.scrollTo(0,document.documentElement.scrollHeight)');await page.wait_for_timeout(1100);await page.screenshot(path=f'/data/updates-{width}-home-last.png')
@@ -52,7 +52,7 @@ async def check(url):
     y=await page.locator('.tt-faq').evaluate('(e)=>e.getBoundingClientRect().top');assert 60<=y<=160,y
     assert not await page.evaluate('document.documentElement.scrollWidth>innerWidth')
     assert not errors,errors
-    print(f'PASS {width}: shortcuts same/cross-route, header fits, copy/migration, clothing, review URL/position, no errors/overflow',flush=True)
+    print(f'PASS {width}: shortcuts same/cross-route, header fits, published copy / stale drafts ignored, clothing, review URL/position, no errors/overflow',flush=True)
     await context.close()
   finally:await browser.close()
 if __name__=='__main__':
