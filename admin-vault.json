@@ -1,0 +1,10 @@
+{
+  "version": 1,
+  "algorithm": "PBKDF2-SHA256/AES-256-GCM",
+  "binding": "tipi-admin:kaARAss/Tipi-Trip:v1",
+  "iterations": 600000,
+  "salt": "RDPkgrXoj0AzibqiZHej4Fgb747aXOMmKh7CYLSPOOU=",
+  "iv": "KeqDK+j+5bRHbbNw",
+  "ciphertext": "S0Csq3j+Dn1dBIorRVNos6sKle+yE3XUVvicgUbxsa07Bcp1Ggu9Fa8N/CqSAPfvgUH0dvlXbHtQA+Z4/H8ltXG1cNQ4OV3MhfTnikO37IijkSMvyx6ZIqfHgGAji3ttvqEkgs1VNo1KdxJC8TnFcbO3b7S+OqOzO9xxCCPST4Iiuwu6szXhBXgDpV/3o+SWhv+Pe6QKvWkgxV6vsePRq5txM4o6",
+  "username": "TipiTrip_admin"
+}
