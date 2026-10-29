@@ -1,0 +1,9 @@
+/* Persistent slim mobile page scrollbar; does not change the content width. */
+.tt-mobile-scrollbar{display:none}
+@media(max-width:760px){
+ .tt-mobile-scrollbar{display:block;position:fixed;z-index:990;top:6px;right:1px;bottom:6px;width:12px;touch-action:none;user-select:none;-webkit-user-select:none;cursor:pointer}
+ .tt-mobile-scrollbar::before{content:"";position:absolute;right:1px;top:0;bottom:0;width:3px;border-radius:4px;background:rgba(10,13,11,.24)}
+ .tt-mobile-scrollbar__thumb{position:absolute;right:1px;top:0;width:3px;min-height:32px;border-radius:4px;background:#b6c29b;box-shadow:0 0 0 1px rgba(10,13,11,.32);will-change:transform}
+ .tt-mobile-scrollbar:focus-visible{outline:1px solid #b6c29b;outline-offset:1px;border-radius:4px}
+ .tt-mobile-scrollbar[hidden]{display:none!important}
+}
