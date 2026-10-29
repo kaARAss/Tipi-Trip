@@ -7,6 +7,7 @@ export function SiteNavigation({ react: React, jsx: { jsx, jsxs }, Link,
   const [open, setOpen] = React.useState(false);
   const toggle = React.useRef(null);
   const drawer = React.useRef(null);
+  const [scrollTarget, setScrollTarget] = React.useState(null);
   React.useEffect(() => { setOpen(false); }, [pathname]);
   React.useEffect(() => {
     if (!open) return;
@@ -32,6 +33,25 @@ export function SiteNavigation({ react: React, jsx: { jsx, jsxs }, Link,
       if (previousFocus?.isConnected) previousFocus.focus();
     };
   }, [open]);
+  React.useEffect(() => {
+    if (!scrollTarget || pathname !== '/services' || open) return;
+    let frame, attempts = 0;
+    const scroll = () => {
+      const target = document.querySelector(scrollTarget);
+      if (target) {
+        target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+        setScrollTarget(null);
+      } else if (++attempts < 120) frame = requestAnimationFrame(scroll);
+    };
+    frame = requestAnimationFrame(scroll);
+    return () => cancelAnimationFrame(frame);
+  }, [pathname, open, scrollTarget]);
+  function jumpTo(event, selector) {
+    event.preventDefault();
+    setOpen(false);
+    setScrollTarget(selector);
+    if (pathname !== '/services') navigate('/services');
+  }
   if (pathname.startsWith('/admin')) return null;
   function services(event) {
     if (pathname === '/services') {
@@ -57,6 +77,12 @@ export function SiteNavigation({ react: React, jsx: { jsx, jsxs }, Link,
       onClick: services, children: 'Услуги', 'data-services-link': inDrawer ? 'drawer' : 'desktop',
       'aria-current': pathname === '/services' ? 'page' : undefined }, 'services'),
     jsx(Link, { to: '/services', className: 'tt-navlink', onClick: services, children: 'Акции' }, 'promotions'),
+    jsx(Link, { to: '/services', className: 'tt-navlink',
+      onClick: event => jumpTo(event, '.tt-territory'), children: 'Карта территории',
+      'data-section-link': 'territory' }, 'territory'),
+    jsx(Link, { to: '/services', className: 'tt-navlink',
+      onClick: event => jumpTo(event, '.tt-faq'), children: 'Полезная информация',
+      'data-section-link': 'useful' }, 'useful'),
     jsx('a', { href: '#tt-contacts', className: 'tt-navlink', onClick: contacts, children: 'Контакты' }, 'contacts'),
   ];
   const socials = () => [

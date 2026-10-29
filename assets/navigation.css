@@ -24,3 +24,14 @@
 @media(min-width:1101px){.tt-site-nav .tt-desktop-links{position:static!important;transform:none!important;flex-direction:row!important}.tt-site-nav .tt-desktop-links a.tt-navlink{white-space:nowrap}}
 @media(max-width:1100px){.tt-site-nav .tt-desktop-links{display:none!important}.tt-site-nav__right{gap:0}}
 @media(max-width:480px){.tt-menu-drawer{padding:20px 24px 28px}.tt-menu-drawer__head{margin-bottom:24px}}
+
+/* Room for the two section shortcuts; contact/social links remain in the drawer. */
+.tt-site-nav .tt-desktop-links{gap:18px}
+.tt-site-nav .tt-desktop-links a.tt-navlink{letter-spacing:.1em;font-size:11px;min-height:44px;display:inline-flex;align-items:center}
+@media(min-width:1280px) and (max-width:1600px){.tt-site-nav .tt-desktop-links .tt-nav-phone,.tt-site-nav .tt-desktop-links .tt-nav-vk,.tt-site-nav .tt-desktop-links .tt-nav-max,.tt-site-nav .tt-desktop-links .tt-nav-tg,.tt-site-nav .tt-desktop-links .tt-nav-sep{display:none}}
+@media(max-width:1279px){.tt-site-nav .tt-desktop-links{display:none!important}.tt-site-nav__right{gap:0}}
+.tt-territory,.tt-faq{scroll-margin-top:100px}
+.tt-services__season{font-family:var(--tt-sans,Arial,sans-serif);font-size:clamp(15px,1.5vw,18px);color:#d9dfc9;line-height:1.5;margin:8px 0 0}
+.tt-review-btn{display:flex;width:fit-content;margin-top:10px;min-height:44px}
+.tt-review-btn:focus-visible{outline:3px solid #dce7b8;outline-offset:4px}
+.tt-foot .tt-review-btn{color:#23281a;font:700 12px/1.4 var(--sans,Arial,sans-serif)}
