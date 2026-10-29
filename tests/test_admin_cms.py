@@ -49,9 +49,10 @@ async def run(url):
     await page.goto(url+'/admin.html');await page.get_by_role('heading',name='Первичная настройка').wait_for();await page.screenshot(path=f'/data/admin-{width}-login.png')
     await page.locator('#admin-username').fill('test-admin');await page.locator('#admin-password').fill('long-test-password-123');await page.locator('#admin-token').fill('synthetic-token-for-local-tests');await page.locator('#login-submit').click();await page.locator('#dashboard').wait_for(state='visible');await page.locator('#editor .panel').first.wait_for()
     assert 'synthetic-token' not in gh.files['admin-vault.json'];assert 'long-test-password' not in gh.files['admin-vault.json'];print('PASS',width,'encrypted first setup')
+    assert await page.locator('[data-section="settings"]').count()==0
     await page.screenshot(path=f'/data/admin-{width}-home.png')
     await page.locator('#toast').evaluate('(e)=>e.hidden=true')
-    for section in ['faq','contacts','media','labels','settings']:
+    for section in ['faq','contacts','media','labels']:
      await page.locator('[data-section="'+section+'"]').click();await page.evaluate('window.scrollTo(0,0)');assert not await page.evaluate('document.documentElement.scrollWidth>innerWidth');await page.screenshot(path=f'/data/admin-{width}-{section}.png')
     await page.locator('[data-section="home"]').click();await page.evaluate('window.scrollTo(0,0)')
 
