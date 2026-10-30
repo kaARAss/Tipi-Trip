@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "revision": "279a9fb8-dc65-4d17-89e5-422eea95adda",
+  "revision": "cfaf5ee6-3361-4ed0-ab3c-586d966af889",
   "site": {
     "nav": {
       "brandName": "Типи‑Трип",
@@ -185,12 +185,12 @@
         ],
         "outro": "Мы открыты к любым вашим идеям и готовы обсудить индивидуальные условия аренды. Свяжитесь с нами, чтобы спланировать ваше идеальное событие!",
         "gallery": [
-          "./img/event1.webp",
-          "./img/event2.webp",
-          "./img/event3.webp",
-          "./img/event4.webp",
-          "./img/event5.webp",
-          "./img/event6.webp"
+          "./media/uploads/events-user-049c13cac2c8-1.webp",
+          "./media/uploads/events-user-357b76a0dbf8-2.webp",
+          "./media/uploads/events-user-bf3b34717edc-3.webp",
+          "./media/uploads/events-user-2f52b44731f8-4.webp",
+          "./media/uploads/events-user-fe7212302f67-5.webp",
+          "./media/uploads/events-user-44208648486e-6.webp"
         ]
       },
       "contact": {
@@ -254,12 +254,12 @@
       "./img/img1.webp"
     ],
     [
-      "./img/event1.webp",
-      "./img/event2.webp",
-      "./img/event3.webp",
-      "./img/event4.webp",
-      "./img/event5.webp",
-      "./img/event6.webp"
+      "./media/uploads/events-user-049c13cac2c8-1.webp",
+      "./media/uploads/events-user-357b76a0dbf8-2.webp",
+      "./media/uploads/events-user-bf3b34717edc-3.webp",
+      "./media/uploads/events-user-2f52b44731f8-4.webp",
+      "./media/uploads/events-user-fe7212302f67-5.webp",
+      "./media/uploads/events-user-44208648486e-6.webp"
     ],
     [
       "./img/saloon-kitchen-wide.svg",
