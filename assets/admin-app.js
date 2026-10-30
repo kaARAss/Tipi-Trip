@@ -1,5 +1,5 @@
 import {frameDefinition,cropWindow,applyCover} from './media-framing.js?v=2';
-import {repo,clone,get,set,validate,b64,from64,request,readFile,commitFiles,draft,blob64} from './admin-io.js';
+import {repo,clone,get,set,validate,b64,from64,request,readFile,commitFiles,draft,blob64} from './admin-io.js?v=2';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const state={token:'',data:null,baseSha:null,uploads:new Map(),urls:new Map(),section:'home',card:0,mode:'desktop',cropPath:null,busy:false,vault:null,vaultSha:null,pick:false,previewRoute:'services',dirty:false};
 let draftTimer,previewTimer,toastTimer,queue=Promise.resolve(),uploadTarget=null;
@@ -59,7 +59,8 @@ function renderCards(out){
  out.append(panel('Карточка услуги',el('div',{class:'cover-layout'},mediaTile(path+'.image','Превью карточки'),el('div',{},field(path+'.title','Название'),field(path+'.desc','Краткое описание','textarea'),field(path+'.price','Стоимость')))));
  if(i===5){const info={...state.data.site.services.events};delete info.gallery;out.append(panel('Текст мероприятия',generic(info,'site.services.events')));out.append(mediaList('site.services.events.gallery','Фото и видео мероприятий'));}
  else{out.append(panel('Описание внутри карточки',field('details.'+i,'Полное описание','textarea')));if(i!==3)out.append(mediaList('galleries.'+i,'Фото и видео внутри карточки'));}
- out.append(panel('Заголовок страницы услуг',generic(state.data.site.services.head,'site.services.head')));
+ const head={...state.data.site.services.head};delete head.sub;
+ out.append(panel('Заголовок страницы услуг',generic(head,'site.services.head')));
  out.append(panel('Акции',generic(state.data.site.services.promotions,'site.services.promotions')));
 }
 function renderFaq(out){state.data.faq.forEach((item,i)=>{const d=el('details',{class:'panel'},el('summary',{},item.title),field('faq.'+i+'.title','Название раздела'));item.blocks.forEach(([tag,text],b)=>{const path='faq.'+i+'.blocks.'+b+'.1';if(Array.isArray(text)){d.append(el('h3',{style:'margin:20px 0 12px'},'Список'));text.forEach((_,j)=>d.append(field(path+'.'+j,'Пункт '+(j+1))));}else d.append(field(path,tag==='h3'?'Подзаголовок':'Абзац '+(b+1),'textarea'));});if(i===0)d.open=true;out.append(d);});}
@@ -144,7 +145,7 @@ async function action(name,dataset){
  if(name==='selectCard'){state.card=Number(dataset.index);render();return;}
  if(name==='crop'){openCrop(dataset.path);return;}
  if(name==='replace'||name==='add'){uploadTarget={kind:name,path:dataset.path};$('#media-picker').multiple=name==='add';$('#media-picker').click();return;}
- if(name==='move'||name==='remove'){const list=get(state.data,dataset.list),i=Number(dataset.index),indices=list.map((_,n)=>n);if(name==='remove'){if(list.length<=1)throw Error('Оставьте хотя бы один материал в карточке');if(!confirm('Удалить материал из карточки? Исходный файл останется в GitHub.'))return;list.splice(i,1);indices.splice(i,1);}else{const j=i+Number(dataset.delta);if(j<0||j>=list.length)return;[list[i],list[j]]=[list[j],list[i]];[indices[i],indices[j]]=[indices[j],indices[i]];}remapCrops(dataset.list,indices);dirty();render();return;}
+ if(name==='move'||name==='remove'){const list=get(state.data,dataset.list),i=Number(dataset.index),indices=list.map((_,n)=>n);if(name==='remove'){if(list.length<=1)throw Error('Оставьте хотя бы один материал в карточке');if(!confirm('Удалить материал из карточки? После публикации исходный файл тоже будет удалён из GitHub, если он больше нигде на сайте не используется.'))return;list.splice(i,1);indices.splice(i,1);}else{const j=i+Number(dataset.delta);if(j<0||j>=list.length)return;[list[i],list[j]]=[list[j],list[i]];[indices[i],indices[j]]=[indices[j],indices[i]];}remapCrops(dataset.list,indices);dirty();render();return;}
  if(name==='reload'){if(!confirm('Загрузить опубликованный контент? Текущий черновик будет заменён. При необходимости сначала экспортируйте его.'))return;await loadData(false);return;}
  if(name==='export'){const blob=new Blob([JSON.stringify(validate(state.data),null,2)],{type:'application/json'});const url=URL.createObjectURL(blob);const a=el('a',{href:url,download:'tipi-content-draft.json'});a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);}
 }
@@ -172,7 +173,7 @@ $('#login-form').addEventListener('submit',async e=>{
  }catch(err){state.token='';authenticated(false);$('#login-error').textContent=err.message;$('#admin-password').value='';$('#admin-token').value='';}finally{busy(false);}
 });
 async function publish(){if(state.busy||!state.token)return;busy(true);clearTimeout(draftTimer);
- try{await saveDraft(false);const data=validate(clone(state.data));data.revision=crypto.randomUUID();const used=usedPaths(data);const files=[{path:'site-content.json',content:JSON.stringify(data,null,2)+'\n'}];for(const[path,blob]of state.uploads)if(used.has(path))files.push({path,base64:await blob64(blob)});
+ try{await saveDraft(false);const data=validate(clone(state.data));data.galleries[5]=clone(data.site.services.events.gallery);data.site.services.head.sub='';data.revision=crypto.randomUUID();const used=usedPaths(data);const files=[{path:'site-content.json',content:JSON.stringify(data,null,2)+'\n'}];for(const[path,blob]of state.uploads)if(used.has(path))files.push({path,base64:await blob64(blob)});
   const c=await commitFiles(state.token,files,{expectedContentSha:state.baseSha,onProgress:m=>toast(m,false,true)});
   const check=await readFile(state.token,'site-content.json',c.sha);if(!check||JSON.stringify(JSON.parse(from64(check.content)))!==JSON.stringify(data))throw Error('Коммит создан, но контрольная проверка не пройдена. Проверьте GitHub перед повтором.');
   state.data=data;state.baseSha=check.sha;state.dirty=false;await draft('delete');$('#draft-status').textContent='Коммит '+c.sha.slice(0,7);render();refreshPreview();toast('Контент и медиа отправлены в GitHub. Сайт обновится после успешной сборки.',false,true);

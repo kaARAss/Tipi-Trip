@@ -10,6 +10,6 @@ if(isAdmin){location.replace(new URL('admin.html',base));}else{
   const response=await fetch(new URL('site-content.json',base),{cache:'no-store'});if(!response.ok)throw new Error('Не удалось загрузить контент сайта');data=await response.json();
  }
  window.TipiCMSData=data;
- await import('./site-cms-entry.js?v=3');
+ await import('./site-cms-entry.js?v=4');
  const {start}=await import('./content-runtime.js?v=3');start({preview});
 }
