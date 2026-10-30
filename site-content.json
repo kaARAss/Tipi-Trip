@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "revision": "cfaf5ee6-3361-4ed0-ab3c-586d966af889",
+  "revision": "2b72a194-4ea3-4a5e-9cb8-ef658158e977",
   "site": {
     "nav": {
       "brandName": "Типи‑Трип",
@@ -185,12 +185,11 @@
         ],
         "outro": "Мы открыты к любым вашим идеям и готовы обсудить индивидуальные условия аренды. Свяжитесь с нами, чтобы спланировать ваше идеальное событие!",
         "gallery": [
-          "./media/uploads/events-user-049c13cac2c8-1.webp",
           "./media/uploads/events-user-357b76a0dbf8-2.webp",
-          "./media/uploads/events-user-bf3b34717edc-3.webp",
           "./media/uploads/events-user-2f52b44731f8-4.webp",
-          "./media/uploads/events-user-fe7212302f67-5.webp",
-          "./media/uploads/events-user-44208648486e-6.webp"
+          "./media/uploads/events-user-44208648486e-6.webp",
+          "./media/uploads/1793361144407-4a0de327-8c66-47ca-9c61-81ce1f94af57.webp",
+          "./media/uploads/1793361474642-ea070cfc-ae12-43ec-ba6b-50e69aeb1f1e.webp"
         ]
       },
       "contact": {
@@ -563,7 +562,27 @@
     "logo": "./img/logo.png",
     "territoryMap": "./img/territory-map.svg"
   },
-  "crops": {},
+  "crops": {
+    "site.services.events.gallery.3": {
+      "desktop": {
+        "x": 42,
+        "y": 50,
+        "zoom": 1
+      }
+    },
+    "site.services.events.gallery.4": {
+      "desktop": {
+        "x": 50,
+        "y": 60,
+        "zoom": 1
+      },
+      "mobile": {
+        "x": 50,
+        "y": 4,
+        "zoom": 1
+      }
+    }
+  },
   "labels": {
     "Перейти к услугам": "Перейти к услугам",
     "ВКонтакте": "ВКонтакте",
