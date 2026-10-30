@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "revision": "0a27833c-c65e-44ec-a432-f4155785eda7",
+  "revision": "66c8de57-812a-4092-a539-2a88f0d11a6d",
   "site": {
     "nav": {
       "brandName": "Типи‑Трип",
@@ -190,7 +190,10 @@
           "./media/uploads/1793361144407-4a0de327-8c66-47ca-9c61-81ce1f94af57.webp",
           "./media/uploads/1793361474642-ea070cfc-ae12-43ec-ba6b-50e69aeb1f1e.webp",
           "./media/uploads/1793362137443-124efb9a-1309-426f-864f-936ad43af902.webp",
-          "./media/uploads/1793362155894-b34f52fb-9c79-44df-b5c3-a46f94213f02.webp"
+          "./media/uploads/1793362155894-b34f52fb-9c79-44df-b5c3-a46f94213f02.webp",
+          "./media/uploads/1793363468366-4db69441-265a-428c-b41d-ce326bc008a6.webp",
+          "./media/uploads/1793363505099-4c2822e7-f808-4f7b-af34-10d9fb6d0ee8.webp",
+          "./media/uploads/1793363525483-f870a95a-180d-49d8-8646-cf40653102d4.webp"
         ]
       },
       "contact": {
@@ -604,6 +607,25 @@
       "mobile": {
         "x": 50,
         "y": 82,
+        "zoom": 1
+      }
+    },
+    "site.services.events.gallery.6": {
+      "desktop": {
+        "x": 50,
+        "y": 70,
+        "zoom": 1
+      },
+      "mobile": {
+        "x": 50,
+        "y": 64,
+        "zoom": 1
+      }
+    },
+    "site.services.events.gallery.8": {
+      "desktop": {
+        "x": 50,
+        "y": 0,
         "zoom": 1
       }
     }
