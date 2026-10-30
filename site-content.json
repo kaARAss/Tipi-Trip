@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "revision": "66c8de57-812a-4092-a539-2a88f0d11a6d",
+  "revision": "47bbf4f0-b0de-4648-b39a-807b876d22de",
   "site": {
     "nav": {
       "brandName": "Типи‑Трип",
@@ -27,18 +27,18 @@
         }
       ],
       "gallery": [
-        "./img/img1.webp",
-        "./img/img2.webp",
+        "./media/uploads/home-furako-1876-e4263e2f3a7c.webp",
         "./img/img3.webp",
-        "./img/img4.webp",
-        "./img/img5.webp",
-        "./img/img6.webp",
-        "./img/img7.webp",
-        "./img/img8.webp",
+        "./img/img1.webp",
         "./img/img9.webp",
-        "./img/img10.webp",
-        "./img/img11.webp",
-        "./img/img12.webp"
+        "./media/uploads/home-furako-1919-c59eb511d494.webp",
+        "./img/img12.webp",
+        "./img/img4.webp",
+        "./img/img6.webp",
+        "./media/uploads/home-furako-1945-5623f32aed93.webp",
+        "./img/img2.webp",
+        "./img/img7.webp",
+        "./img/img8.webp"
       ]
     },
     "services": {
@@ -626,6 +626,42 @@
       "desktop": {
         "x": 50,
         "y": 0,
+        "zoom": 1
+      }
+    },
+    "site.home.gallery.0": {
+      "desktop": {
+        "x": 50,
+        "y": 85,
+        "zoom": 1
+      },
+      "mobile": {
+        "x": 50,
+        "y": 85,
+        "zoom": 1
+      }
+    },
+    "site.home.gallery.4": {
+      "desktop": {
+        "x": 50,
+        "y": 50,
+        "zoom": 1
+      },
+      "mobile": {
+        "x": 50,
+        "y": 50,
+        "zoom": 1
+      }
+    },
+    "site.home.gallery.8": {
+      "desktop": {
+        "x": 50,
+        "y": 85,
+        "zoom": 1
+      },
+      "mobile": {
+        "x": 50,
+        "y": 85,
         "zoom": 1
       }
     }
