@@ -11,7 +11,7 @@ class Github:
  def sha(self):self.n+=1;return f'{self.n:040x}'
  def file(self,path):
   if path not in self.files:return None
-  text=self.files[path];return {'sha':hashlib.sha1(text.encode()).hexdigest(),'encoding':'base64','content':base64.b64encode(text.encode()).decode()}
+  text=self.files[path];raw=text.encode() if isinstance(text,str) else text;return {'sha':hashlib.sha1(raw).hexdigest(),'encoding':'base64','content':base64.b64encode(raw).decode()}
  async def handle(self,route):
   req=route.request;path=req.url.split('/Tipi-Trip',1)[1].split('?')[0];body=req.post_data_json if req.method in ['POST','PATCH','PUT'] else {};code=200
   if path=='':out={'permissions':{'push':True}}
@@ -22,6 +22,7 @@ class Github:
    sha=self.sha();self.blobs[sha]=body;out={'sha':sha}
   elif path.startswith('/git/commits/'):
    out={'sha':self.head,'tree':{'sha':'base-tree'}}
+  elif path.startswith('/git/trees/') and req.method=='GET':out={'tree':[{'path':path,'type':'blob'} for path in self.files],'truncated':False}
   elif path=='/git/trees':
    if self.fail:self.fail=False;code=503;out={'message':'Synthetic network failure'}
    else:
@@ -31,6 +32,7 @@ class Github:
   elif path=='/git/refs/heads/main':
    self.head=body['sha'];c=self.commits[self.head]
    for f in self.trees[c['tree']]:
+    if f['sha'] is None:self.files.pop(f['path'],None);continue
     b=self.blobs[f['sha']]
     if f['path'].endswith('.json'):self.files[f['path']]=base64.b64decode(b['content']).decode() if b['encoding']=='base64' else b['content']
    out={'object':{'sha':self.head}}
