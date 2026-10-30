@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "revision": "47bbf4f0-b0de-4648-b39a-807b876d22de",
+  "revision": "ae810d3a-ebae-485c-89d1-816e1b7fd64a",
   "site": {
     "nav": {
       "brandName": "Типи‑Трип",
@@ -99,7 +99,7 @@
       "head": {
         "kicker": "TIPI-TRIP",
         "title": "Наши услуги",
-        "sub": "Выберите услугу — и забронируйте в один клик через ВК."
+        "sub": ""
       },
       "cards": [
         {
@@ -137,7 +137,7 @@
           "title": "Мероприятия",
           "desc": "Дни рождения, свадьбы, фотосессии, ретриты и корпоративы под открытым небом.",
           "price": "Индивидуально",
-          "image": "./img/event-cover-new.svg",
+          "image": "./media/uploads/1793364470013-0dc3582c-2bd4-4c75-be4a-18803eaa579d.webp",
           "events": true
         },
         {
@@ -257,12 +257,15 @@
       "./img/img1.webp"
     ],
     [
-      "./media/uploads/events-user-049c13cac2c8-1.webp",
       "./media/uploads/events-user-357b76a0dbf8-2.webp",
-      "./media/uploads/events-user-bf3b34717edc-3.webp",
-      "./media/uploads/events-user-2f52b44731f8-4.webp",
-      "./media/uploads/events-user-fe7212302f67-5.webp",
-      "./media/uploads/events-user-44208648486e-6.webp"
+      "./media/uploads/events-user-44208648486e-6.webp",
+      "./media/uploads/1793361144407-4a0de327-8c66-47ca-9c61-81ce1f94af57.webp",
+      "./media/uploads/1793361474642-ea070cfc-ae12-43ec-ba6b-50e69aeb1f1e.webp",
+      "./media/uploads/1793362137443-124efb9a-1309-426f-864f-936ad43af902.webp",
+      "./media/uploads/1793362155894-b34f52fb-9c79-44df-b5c3-a46f94213f02.webp",
+      "./media/uploads/1793363468366-4db69441-265a-428c-b41d-ce326bc008a6.webp",
+      "./media/uploads/1793363505099-4c2822e7-f808-4f7b-af34-10d9fb6d0ee8.webp",
+      "./media/uploads/1793363525483-f870a95a-180d-49d8-8646-cf40653102d4.webp"
     ],
     [
       "./img/saloon-kitchen-wide.svg",
