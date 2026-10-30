@@ -19,7 +19,7 @@ export function start({preview=false}={}){
   }
   document.querySelectorAll('img,video').forEach(el=>{
    let path=el.dataset.cmsPath;
-   const src=el.getAttribute('src')||el.querySelector('source')?.getAttribute('src')||'';
+   const src=el.dataset.cmsSrc||el.getAttribute('src')||el.querySelector('source')?.getAttribute('src')||'';
    if(!path)path=mediaPaths.find(([,v])=>v===src)?.[0];
    if(el.matches('.tt-videobg__v')){path='media.backgroundVideo';const target=data.media.backgroundVideo;if(el.getAttribute('src')!==target){el.src=target;el.load();el.play().catch(()=>{});}el.poster=data.media.backgroundPoster;}
    if(path==='media.logo'||(el.matches('.tt-nav__logo img,.tt-site-nav img')&&src.includes('logo'))){path='media.logo';if(el.getAttribute('src')!==data.media.logo)el.src=data.media.logo;}
@@ -27,7 +27,8 @@ export function start({preview=false}={}){
    const crop=cropFor(path);el.style.objectPosition=`${crop.x}% ${crop.y}%`;
    if(!el.classList.contains('tt-lightbox__img')){if(data.crops?.[path]){el.style.transform=`scale(${crop.zoom})`;el.style.transformOrigin=`${crop.x}% ${crop.y}%`;}else{el.style.removeProperty('transform');el.style.removeProperty('transform-origin');}el.style.objectFit='cover';}if(el.matches('.tt-videobg__v')){Object.assign(el.style,{position:'absolute',inset:'0',width:'100%',height:'100%',minWidth:'0',minHeight:'0',maxWidth:'none'});applyCover(el,crop);}
    if(el.closest('.tt-card__img,.tt-detail__thumb')){el.style.position='absolute';el.style.inset='0';el.style.width='100%';el.style.height='100%';}
-   if(path==='media.logo'&&el.parentElement){el.parentElement.style.overflow='hidden';el.parentElement.style.borderRadius='50%';}
+   // Round only dedicated navigation logo wrappers, never the footer content column.
+   if(path==='media.logo'&&el.parentElement?.matches('.tt-nav__logo,.tt-site-nav__logo')){el.parentElement.style.overflow='hidden';el.parentElement.style.borderRadius='50%';}
    if(el.tagName==='VIDEO'&&!el.classList.contains('tt-videobg__v')){el.style.width='100%';el.style.height='100%';}
   });
   const map=document.querySelector('.tt-territory__areas');if(map){const c=cropFor('media.territoryMap');map.style.transform=`scale(${c.zoom})`;map.style.transformOrigin=`${c.x}% ${c.y}%`;}
