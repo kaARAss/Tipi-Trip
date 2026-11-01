@@ -2,6 +2,7 @@
 <html lang="ru">
   <head>
     <meta charset="UTF-8" />
+    <base href="/" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="yandex-verification" content="38fef2ea366d2680" />
     <meta name="theme-color" content="#0a0d0b" />
@@ -63,7 +64,8 @@
       "sameAs": ["https://vk.com/tipitrip47", "https://t.me/tipitrip47"]
     }
     </script>
-    <script type="module" crossorigin src="./assets/content-loader.js?v=4"></script>
+    <script src="/assets/routing.js?v=1"></script>
+    <script type="module" crossorigin src="./assets/content-loader.js?v=clean-urls-1"></script>
     <link rel="stylesheet" crossorigin href="./assets/index-CxyM5cCM.css">
     <link rel="stylesheet" href="./assets/services-map.css">
     <link rel="stylesheet" href="./assets/navigation.css?v=section-shortcuts-2">
@@ -75,30 +77,6 @@
 
   <body>
     <div id="root"></div>
-    <script id="tt-route-title">
-      (function () {
-        var T = {
-          "/": "ГлэмпиХаус «Типи-Трип» — баня и купель Фурако в 20 км от Санкт-Петербурга",
-          "/services": "Услуги и цены — ГлэмпиХаус «Типи-Трип»"
-        };
-        function set() {
-          var p = location.pathname.replace(/\/+$/, "") || "/";
-          var t = T[p];
-          if (t) document.title = t;
-        }
-        var wrap = function (k) {
-          var f = history[k];
-          history[k] = function () {
-            var r = f.apply(this, arguments);
-            setTimeout(set, 0);
-            return r;
-          };
-        };
-        wrap("pushState");
-        wrap("replaceState");
-        addEventListener("popstate", function () { setTimeout(set, 0); });
-        setTimeout(set, 0);
-      })();
-    </script>
+
   </body>
 </html>
