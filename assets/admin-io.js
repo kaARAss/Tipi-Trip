@@ -1,3 +1,4 @@
+import {buildServiceFiles, servicePages} from './service-pages.js?v=1';
 import {removedMedia} from './media-cleanup.js?v=1';
 export const repo={owner:'kaARAss',name:'Tipi-Trip',branch:'main'};
 export const clone=v=>structuredClone(v);
@@ -27,12 +28,16 @@ export async function readFile(token,path,ref){try{return await request(token,'/
 export async function commitFiles(token,files,{expectedContentSha,expectedVaultSha,onProgress=()=>{}}={}){
  const ref=await request(token,'/git/ref/heads/'+repo.branch);const head=ref.object.sha;
  const contentFile=files.find(f=>f.path==='site-content.json');
+ const generated=contentFile?buildServiceFiles(validate(JSON.parse(contentFile.content||from64(contentFile.base64)))):[];
+ const generatedPaths=new Set(servicePages.map(p=>'services/'+p.slug+'/index.html'));
+ if(files.some(f=>generatedPaths.has(f.path)))throw Error('SEO-страницы формируются только из контента');
+ files=[...files,...generated];
  const remoteContent=expectedContentSha!==undefined||contentFile?await readFile(token,'site-content.json',head):null;
  if(expectedContentSha!==undefined&&remoteContent?.sha!==expectedContentSha)throw Error('Контент уже изменён в другой сессии. Черновик сохранён; обновите данные и объедините изменения.');
  const deletions=contentFile&&remoteContent?removedMedia(JSON.parse(from64(remoteContent.content)),validate(JSON.parse(contentFile.content||from64(contentFile.base64)))):[];
  if(expectedVaultSha!==undefined){const remote=await readFile(token,'admin-vault.json',head);if((remote?.sha||null)!==expectedVaultSha)throw Error('Настройки входа уже изменены в другой сессии');}
  const parent=await request(token,'/git/commits/'+head);const tree=[];
- for(const f of files){if(!/^(site-content\.json|admin-vault\.json|media\/uploads\/[a-zA-Z0-9_.-]+\.(webp|jpg|jpeg|png|gif|avif|mp4|webm|mov|m4v))$/.test(f.path))throw Error('Публикация этого пути запрещена');onProgress('Загрузка '+f.path);const blob=await request(token,'/git/blobs',{method:'POST',body:JSON.stringify({content:f.base64||b64(f.content),encoding:'base64'})});tree.push({path:f.path,mode:'100644',type:'blob',sha:blob.sha});}
+ for(const f of files){if(!generated.includes(f)&&!/^(site-content\.json|admin-vault\.json|media\/uploads\/[a-zA-Z0-9_.-]+\.(webp|jpg|jpeg|png|gif|avif|mp4|webm|mov|m4v))$/.test(f.path))throw Error('Публикация этого пути запрещена');onProgress('Загрузка '+f.path);const blob=await request(token,'/git/blobs',{method:'POST',body:JSON.stringify({content:f.base64||b64(f.content),encoding:'base64'})});tree.push({path:f.path,mode:'100644',type:'blob',sha:blob.sha});}
  // Deletions and the manifest share one tree/commit. A failed publication
  // never removes files from the current branch. Missing files need no tombstone.
  const existingTree=deletions.length?await request(token,'/git/trees/'+parent.tree.sha+'?recursive=1'):null;

@@ -1,5 +1,5 @@
 import {frameDefinition,cropWindow,applyCover} from './media-framing.js?v=2';
-import {repo,clone,get,set,validate,b64,from64,request,readFile,commitFiles,draft,blob64} from './admin-io.js?v=2';
+import {repo,clone,get,set,validate,b64,from64,request,readFile,commitFiles,draft,blob64} from './admin-io.js?v=service-pages-1';
 const $=s=>document.querySelector(s),$$=s=>[...document.querySelectorAll(s)];
 const state={token:'',data:null,baseSha:null,uploads:new Map(),urls:new Map(),section:'home',card:0,mode:'desktop',cropPath:null,busy:false,vault:null,vaultSha:null,pick:false,previewRoute:'services',dirty:false};
 let draftTimer,previewTimer,toastTimer,queue=Promise.resolve(),uploadTarget=null;

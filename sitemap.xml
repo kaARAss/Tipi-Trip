@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://tipi-trip.ru/</loc>
-  </url>
-  <url>
-    <loc>https://tipi-trip.ru/services/</loc>
-  </url>
+  <url><loc>https://tipi-trip.ru/</loc></url>
+  <url><loc>https://tipi-trip.ru/services/</loc></url>
+  <url><loc>https://tipi-trip.ru/services/tipi/</loc></url>
+  <url><loc>https://tipi-trip.ru/services/banya/</loc></url>
+  <url><loc>https://tipi-trip.ru/services/furako/</loc></url>
+  <url><loc>https://tipi-trip.ru/services/sertifikaty/</loc></url>
+  <url><loc>https://tipi-trip.ru/services/meropriyatiya/</loc></url>
+  <url><loc>https://tipi-trip.ru/services/saloon/</loc></url>
 </urlset>

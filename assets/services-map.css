@@ -16,3 +16,6 @@
 .tt-territory__link:focus-visible{outline:3px solid #ffe2a4;outline-offset:4px}
 @media(max-width:600px){.tt-territory{margin-top:48px}.tt-territory__head{margin-bottom:20px}.tt-territory__canvas{border-radius:12px}.tt-territory__legend{gap:8px;margin-top:16px}.tt-territory__link{padding:10px 14px;font-size:14px;flex:1 1 auto}.tt-territory__hint{font-size:15px}}
 @media(prefers-reduced-motion:reduce){.tt-territory__target polygon,.tt-territory__link{transition:none}}
+
+/* The detail action is now a crawlable link, retaining the existing button style. */
+a.tt-card__more{display:inline-flex;align-items:center;justify-content:center;text-decoration:none;box-sizing:border-box;min-height:44px}
